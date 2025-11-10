@@ -111,7 +111,7 @@ public class BombTest {
             Method metodo = Alien.Bomb.class.getDeclaredMethod("initBomb", int.class, int.class);
             metodo.setAccessible(true);
             metodo.invoke(bomb, CENTRO_X,BORDER_UP);
-            assertEquals(bomb.getX(), BORDER_UP);
+            assertEquals(bomb.getY(), BORDER_UP);
         }catch (NoSuchMethodException | InvocationTargetException | IllegalAccessException e) {
             throw new RuntimeException(e);
         }
@@ -126,7 +126,7 @@ public class BombTest {
             Method metodo = Alien.Bomb.class.getDeclaredMethod("initBomb", int.class, int.class);
             metodo.setAccessible(true);
             metodo.invoke(bomb, CENTRO_X,INSIDE_BORDER_UP);
-            assertEquals(bomb.getX(), INSIDE_BORDER_UP);
+            assertEquals(bomb.getY(), INSIDE_BORDER_UP);
         }catch (NoSuchMethodException | InvocationTargetException | IllegalAccessException e) {
             throw new RuntimeException(e);
         }
@@ -141,7 +141,7 @@ public class BombTest {
             Method metodo = Alien.Bomb.class.getDeclaredMethod("initBomb", int.class, int.class);
             metodo.setAccessible(true);
             metodo.invoke(bomb, CENTRO_X,BORDER_DOWN);
-            assertEquals(bomb.getX(), BORDER_DOWN);
+            assertEquals(bomb.getY(), BORDER_DOWN);
         }catch (NoSuchMethodException | InvocationTargetException | IllegalAccessException e) {
             throw new RuntimeException(e);
         }
@@ -156,7 +156,7 @@ public class BombTest {
             Method metodo = Alien.Bomb.class.getDeclaredMethod("initBomb", int.class, int.class);
             metodo.setAccessible(true);
             metodo.invoke(bomb, CENTRO_X,INSIDE_BORDER_DOWN);
-            assertEquals(bomb.getX(), INSIDE_BORDER_DOWN);
+            assertEquals(bomb.getY(), INSIDE_BORDER_DOWN);
         }catch (NoSuchMethodException | InvocationTargetException | IllegalAccessException e) {
             throw new RuntimeException(e);
         }

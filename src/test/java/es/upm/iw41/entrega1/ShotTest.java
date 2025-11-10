@@ -122,7 +122,7 @@ public class ShotTest {
             Method metodo = Shot.class.getDeclaredMethod("initShot", int.class, int.class);
             metodo.setAccessible(true);
             metodo.invoke(shot, CENTRO_X, INSIDE_BORDER_UP);
-            boolean resultado = shot.getX() >= BORDER_UP;
+            boolean resultado = shot.getY() <= BORDER_UP;
             assertTrue(resultado);
         } catch (NoSuchMethodException | InvocationTargetException | IllegalAccessException e) {
             throw new RuntimeException(e);
@@ -137,7 +137,7 @@ public class ShotTest {
             Method metodo = Shot.class.getDeclaredMethod("initShot", int.class, int.class);
             metodo.setAccessible(true);
             metodo.invoke(shot, CENTRO_X, INSIDE_BORDER_DOWN);
-            boolean resultado = shot.getX() <= BORDER_DOWN;
+            boolean resultado = shot.getY() <= BORDER_DOWN;
             assertTrue(resultado);
         } catch (NoSuchMethodException | InvocationTargetException | IllegalAccessException e) {
             throw new RuntimeException(e);
@@ -152,7 +152,7 @@ public class ShotTest {
             Method metodo = Shot.class.getDeclaredMethod("initShot", int.class, int.class);
             metodo.setAccessible(true);
             metodo.invoke(shot, CENTRO_X, BORDER_DOWN);
-            boolean resultado = shot.getX() <= BORDER_DOWN;
+            boolean resultado = shot.getY() <= BORDER_DOWN;
             assertTrue(resultado);
         } catch (NoSuchMethodException | InvocationTargetException | IllegalAccessException e) {
             throw new RuntimeException(e);

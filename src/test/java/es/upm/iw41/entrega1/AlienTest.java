@@ -66,7 +66,6 @@ public class AlienTest {
     }
 
 
-
     //METODO initAlien()
 
     @Test
