@@ -17,7 +17,7 @@ public class PlayerTest {
     }
 
     @Test
-    @DisplayName("Player.KeyPressed: flecha izquierda, movimiento hacia la izquierda")
+    @DisplayName("Player.KeyPressed: Pulsar Izquierda inicia movimiento a la izquierda")
     void playerKeyPressed_leftMovesLeft() {
         Player player = new Player();
         int x = player.getX();
@@ -28,7 +28,7 @@ public class PlayerTest {
     }
 
     @Test
-    @DisplayName("Player.keyPressed: flecha derecha, movimiento hacia la derecha")
+    @DisplayName("Player.KeyPressed: Pulsar Derecha inicia movimiento a la derecha")
     void playerKeyPressed_rightMovesRight() {
         Player player = new Player();
         int x = player.getX();

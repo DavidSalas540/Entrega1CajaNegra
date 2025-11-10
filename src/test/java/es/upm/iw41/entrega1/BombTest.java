@@ -25,6 +25,7 @@ public class BombTest {
 
     // METODO initBomb()
 
+    // X1,Y1
     @Test
     @DisplayName("Bomb.initBomb: X en un valor central se inicializa correctamente)")
     void bombInit_BoundariesX1() {
@@ -42,6 +43,7 @@ public class BombTest {
         }
     }
 
+    //X2,Y1
     @Test
     @DisplayName("Bomb.initBomb: X por debajo del límite se ajusta a BORDER_LEFT")
     void bombInit_BoundariesX2() {
@@ -57,6 +59,8 @@ public class BombTest {
             throw new RuntimeException(e);
         }
     }
+
+    //X3,Y1
     @Test
     @DisplayName("Bomb.initBomb: X en el límite izquierdo se mantiene en BORDER_LEFT")
     void bombInit_BoundariesX3() {
@@ -72,8 +76,9 @@ public class BombTest {
         }
     }
 
+    //X4,Y1
     @Test
-    @DisplayName("Bomb.initBomb: X por debajo del limite se ajusta en BORDER_RIGTH)")
+    @DisplayName("Bomb.initBomb: X por debajo del limite se ajusta en BORDER_RIGHT)")
     void bombInit_BoundariesX4() {
         Alien alien = new Alien(0, 0);
         Alien.Bomb bomb = alien.getBomb();
@@ -87,6 +92,8 @@ public class BombTest {
             throw new RuntimeException(e);
         }
     }
+
+    //X5,Y1
     @Test
     @DisplayName("Bomb.initBomb: X en el límite derecho se mantiene en BORDER_RIGHT")
     void bombInit_BoundariesX5() {
@@ -102,8 +109,9 @@ public class BombTest {
         }
     }
 
+    //X1,Y2
     @Test
-    @DisplayName("Bomb.initBomb: Y en el  se mantiene en BORDER_UP")
+    @DisplayName("Bomb.initBomb: Y en el limite superior se mantiene en BORDER_UP")
     void bombInit_BoundariesY2() {
         Alien alien = new Alien(0, 0);
         Alien.Bomb bomb = alien.getBomb();
@@ -117,6 +125,7 @@ public class BombTest {
         }
     }
 
+    //X1,Y3
     @Test
     @DisplayName("Bomb.initBomb: Y en el límite superior se mantiene inmediatamente debajo de BORDER_UP")
     void bombInit_BoundariesY3() {
@@ -132,6 +141,7 @@ public class BombTest {
         }
     }
 
+    //X1,Y4
     @Test
     @DisplayName("Bomb.initBomb: Y en el límite inferior se mantiene en BORDER_DOWN")
     void bombInit_BoundariesY4() {
@@ -147,6 +157,7 @@ public class BombTest {
         }
     }
 
+    //X1,Y5
     @Test
     @DisplayName("Bomb.initBomb: Y en el límite superior se mantiene inmediatamente encima de BORDER_DOWN")
     void bombInit_BoundariesY5() {
