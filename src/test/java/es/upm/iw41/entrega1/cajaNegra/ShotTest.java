@@ -1,4 +1,4 @@
-package es.upm.iw41.entrega1;
+package es.upm.iw41.entrega1.cajaNegra;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

@@ -1,21 +1,7 @@
-package es.upm.iw41.entrega1;
+package es.upm.iw41.entrega1.cajaNegra;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.DisplayName;
-import static org.junit.jupiter.api.Assertions.*;
-
-import space_invaders.sprites.Alien;
-import space_invaders.sprites.Alien.Bomb;
-import space_invaders.sprites.Player;
-import space_invaders.sprites.Shot;
-import space_invaders.sprites.Sprite;
-
-import java.awt.*;
-import java.awt.event.KeyEvent;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 
 
 class MainTest {
