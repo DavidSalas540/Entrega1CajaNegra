@@ -443,6 +443,8 @@ public class Board extends JPanel {
                 alien.act(direction);
             }
         }
+
+
     }
 
     /**
