@@ -36,12 +36,10 @@ public class BombTest {
     @Test
     @DisplayName("Bomb.initBomb - Condition CP3")
     void testinitBomb_Condition_CP3() {
-        int x = Commons.BOARD_WIDTH;
-        int y = Commons.BOARD_HEIGHT;
         Alien alien = new Alien(Commons.BOARD_WIDTH,Commons.BOARD_HEIGHT);
         Alien.Bomb bomb = alien.getBomb();
 
-        boolean result = bomb.getX() == x+1 && bomb.getY() == y+1;
+        boolean result = bomb.getX() == Commons.BOARD_WIDTH && bomb.getY() == Commons.BOARD_HEIGHT;
         assertTrue(result);
     }
 

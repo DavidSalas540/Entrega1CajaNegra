@@ -27,7 +27,7 @@ public class PlayerTest {
         player.setX(width - 1);
         player.keyPressed(key(KeyEvent.KEY_PRESSED, KeyEvent.VK_RIGHT));
         player.act();
-        assertEquals(player.getX(), width);
+        assertEquals(width, player.getX());
 
     }
 
