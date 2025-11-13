@@ -18,8 +18,7 @@ public class ShotTest {
     @DisplayName("Shot.initShot - Path CP1")
     void testinitShot_Path_CP1() {
         Shot shot = new Shot(CENTRO_X, CENTRO_Y);
-        boolean resultado = shot.getX() >= Commons.BORDER_LEFT && shot.getX() <= Commons.BOARD_WIDTH &&
-                shot.getY() <= Commons.BOARD_HEIGHT && shot.getY() >= Commons.GROUND;
+        boolean resultado = shot.getX() > CENTRO_X && shot.getY() < CENTRO_Y;
         assertTrue(resultado);
     }
 }
