@@ -130,7 +130,4 @@ public class PlayerTest {
         int x2 = player.getX();
         assertEquals(x1, x2);
     }
-
 }
-
-

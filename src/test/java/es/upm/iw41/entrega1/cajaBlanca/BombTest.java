@@ -4,7 +4,6 @@ import main.Commons;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import space_invaders.sprites.Alien;
-import space_invaders.sprites.Alien.Bomb;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
