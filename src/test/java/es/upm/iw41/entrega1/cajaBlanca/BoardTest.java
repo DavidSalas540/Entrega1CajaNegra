@@ -301,7 +301,7 @@ public class BoardTest {
     void testBoardUpdate_bomb_CP3() {
         Board board = new Board();
         List<Alien> list = new ArrayList<>();
-        Alien alien = new Alien(CENTRO_X,CENTRO_Y);
+        Alien alien = new Alien(CENTRO_X,0);
         Alien.Bomb bomb = alien.getBomb();
         int y = bomb.getY();
         list.add(alien);
@@ -309,9 +309,6 @@ public class BoardTest {
         Player player = board.getPlayer();
 
         try {
-            Field bomb_destroyed = Alien.Bomb.class.getDeclaredField("destroyed");
-            bomb_destroyed.setAccessible(true);
-            bomb_destroyed.set(bomb,true);
             Field player_visible = Sprite.class.getDeclaredField("visible");
             player_visible.setAccessible(true);
             player_visible.set(player,false);
@@ -345,9 +342,6 @@ public class BoardTest {
             Field bomb_destroyed = Alien.Bomb.class.getDeclaredField("destroyed");
             bomb_destroyed.setAccessible(true);
             bomb_destroyed.set(bomb,false);
-            Field player_visible = Sprite.class.getDeclaredField("visible");
-            player_visible.setAccessible(true);
-            player_visible.set(player,true);
             Method method = Board.class.getDeclaredMethod("update_bomb");
             method.setAccessible(true);
             method.invoke(board);
@@ -378,9 +372,6 @@ public class BoardTest {
             Field bomb_destroyed = Alien.Bomb.class.getDeclaredField("destroyed");
             bomb_destroyed.setAccessible(true);
             bomb_destroyed.set(bomb,false);
-            Field player_visible = Sprite.class.getDeclaredField("visible");
-            player_visible.setAccessible(true);
-            player_visible.set(player,true);
             Method method = Board.class.getDeclaredMethod("update_bomb");
             method.setAccessible(true);
             method.invoke(board);
@@ -423,7 +414,7 @@ public class BoardTest {
     void testBoardUpdate_bomb_CP7(){
         Board board = new Board();
         List<Alien> list = new ArrayList<>();
-        Alien alien = new Alien(CENTRO_X,Commons.GROUND - Commons.BOMB_HEIGHT);
+        Alien alien = new Alien(CENTRO_X,Commons.GROUND);
         Alien.Bomb bomb = alien.getBomb();
         list.add(alien);
         board.setAliens(list);
@@ -439,7 +430,7 @@ public class BoardTest {
             method.setAccessible(true);
             method.invoke(board);
 
-            assertTrue(bomb.getY() < Commons.GROUND - Commons.BOMB_HEIGHT && bomb.isDestroyed());
+            assertTrue(bomb.getY() < Commons.GROUND && bomb.isDestroyed());
         } catch (NoSuchFieldException | IllegalAccessException | NoSuchMethodException | InvocationTargetException e) {
             throw new RuntimeException(e);
         }
@@ -454,17 +445,15 @@ public class BoardTest {
         Alien.Bomb bomb = alien.getBomb();
         list.add(alien);
         board.setAliens(list);
-
+        alien.setX(alien.getX() + 1);
+        alien.setY(alien.getY() + 1);
         try {
-            Field bomb_destroyed = Alien.Bomb.class.getDeclaredField("destroyed");
-            bomb_destroyed.setAccessible(true);
-            bomb_destroyed.set(bomb,true);
             Method method = Board.class.getDeclaredMethod("update_bomb");
             method.setAccessible(true);
             method.invoke(board);
 
-            assertTrue(!bomb.isDestroyed());
-        } catch (NoSuchMethodException | InvocationTargetException | IllegalAccessException | NoSuchFieldException e) {
+            assertTrue(bomb.getX() == alien.getX() && bomb.getY() == alien.getY());
+        } catch (NoSuchMethodException | InvocationTargetException | IllegalAccessException e) {
             throw new RuntimeException(e);
         }
     }
@@ -480,15 +469,12 @@ public class BoardTest {
         list.add(alien);
         board.setAliens(list);
         try {
-            Field bomb_destroyed = Alien.Bomb.class.getDeclaredField("destroyed");
-            bomb_destroyed.setAccessible(true);
-            bomb_destroyed.set(bomb,true);
             Method method = Board.class.getDeclaredMethod("update_bomb");
             method.setAccessible(true);
             method.invoke(board);
 
             assertTrue(bomb.isDestroyed());
-        } catch (NoSuchMethodException | InvocationTargetException | IllegalAccessException | NoSuchFieldException e) {
+        } catch (NoSuchMethodException | InvocationTargetException | IllegalAccessException e) {
             throw new RuntimeException(e);
         }
     }
@@ -507,9 +493,6 @@ public class BoardTest {
             Field alien_visible = Sprite.class.getDeclaredField("visible");
             alien_visible.setAccessible(true);
             alien_visible.set(alien,false);
-            Field bomb_destroyed = Alien.Bomb.class.getDeclaredField("destroyed");
-            bomb_destroyed.setAccessible(true);
-            bomb_destroyed.set(bomb,true);
             Method method = Board.class.getDeclaredMethod("update_bomb");
             method.setAccessible(true);
             method.invoke(board);
@@ -529,8 +512,8 @@ public class BoardTest {
         Alien.Bomb bomb = alien.getBomb();
         list.add(alien);
         board.setAliens(list);
-        alien.setX(CENTRO_X + 1);
-        alien.setX(CENTRO_Y + 1);
+        alien.setX(alien.getX() + 1);
+        alien.setX(alien.getY() + 1);
         try {
             Field bomb_destroyed = Alien.Bomb.class.getDeclaredField("destroyed");
             bomb_destroyed.setAccessible(true);
