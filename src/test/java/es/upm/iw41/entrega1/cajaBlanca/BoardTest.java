@@ -113,7 +113,6 @@ public class BoardTest {
             method.invoke(board);
             Field inGame = Board.class.getDeclaredField("inGame");
             inGame.setAccessible(true);
-
             assertTrue(inGame.getBoolean(board));
         }catch (NoSuchMethodException | InvocationTargetException |
                 IllegalAccessException | NoSuchFieldException e) {
@@ -141,77 +140,95 @@ public class BoardTest {
 
     }
 
+
     @Test
     @DisplayName("Board.update_aliens - Path CP4")
     void testBoardUpdate_aliens_CP4() {
         Board board = new Board();
-        board.getAliens().add(new Alien(Commons.BOARD_WIDTH - Commons.BORDER_RIGHT  , Commons.ALIEN_INIT_Y));
+        board.getAliens().clear();
         board.setDirection(-1);
-        Player player = new Player();
-        board.setPlayer(player);
-        board.getAliens().getFirst().die();
-        int x = board.getAliens().getFirst().getX();
+        int initialX = Commons.BOARD_WIDTH - Commons.BORDER_RIGHT;
+        int initialY = Commons.ALIEN_INIT_Y;
+
+        Alien testAlien = new Alien(initialX, initialY);
+        testAlien.die();
+        board.getAliens().add(testAlien);
 
         try {
             Method method = Board.class.getDeclaredMethod("update_aliens");
             method.setAccessible(true);
             method.invoke(board);
 
-            boolean correcto = x > Commons.BORDER_LEFT && board.getDirection() == -1 && x >= Commons.BOARD_WIDTH - Commons.BORDER_RIGHT
-                    && !board.getAliens().getFirst().isVisible();
-            assertTrue(correcto);
         } catch (NoSuchMethodException | InvocationTargetException |
                  IllegalAccessException e) {
             throw new RuntimeException(e);
         }
+
+        Alien finalAlienState = board.getAliens().getFirst();
+        assertEquals(-1, board.getDirection());
+        int expectedY = initialY + Commons.GO_DOWN;
+        assertEquals(expectedY, finalAlienState.getY());
+        assertEquals(initialX, finalAlienState.getX());
     }
 
-    // 1,2,[3,4,8,2]*,12,13,[14,15,13]*,20  NO TERMINADO
+
     @Test
     @DisplayName("Board.update_aliens - Path CP7")
     void testBoardUpdate_aliens_CP7() {
+        Board board = new Board();
+        board.getAliens().clear();
+        int initialX = CENTRO_X;
+        int initialY = CENTRO_Y;
+        Alien testAlien = new Alien(initialX, initialY);
+        testAlien.die();
+        board.getAliens().add(testAlien);
+        int initialDirection = 1;
+        board.setDirection(initialDirection);
+
         try {
-            Board board = new Board();
-            board.getAliens().add(new Alien(CENTRO_X,CENTRO_Y));
-            Player player = new Player();
-            board.setPlayer(player);
-            int dir = 1;
-            board.setDirection(dir);
-
-            board.getAliens().getFirst().die();
-
             Method method = Board.class.getDeclaredMethod("update_aliens");
             method.setAccessible(true);
             method.invoke(board);
-
-            assertTrue(board.getDirection() != -1 && board.getAliens().getFirst().getX() > Commons.BORDER_LEFT && !board.getAliens().getFirst().isVisible());
-        } catch (NoSuchMethodException | InvocationTargetException | IllegalAccessException e) {
+        } catch (Exception e) {
             throw new RuntimeException(e);
         }
+
+        Alien finalAlienState = board.getAliens().getFirst();
+
+        assertEquals(initialDirection, board.getDirection());
+        assertEquals(initialY, finalAlienState.getY());
+        assertEquals(initialX, finalAlienState.getX());
     }
 
-
     @Test
-    @DisplayName("Board.update_aliens - Path CP8")
+    @DisplayName("Board.update_aliens - Path CP8 (Invasión)")
     void testBoardUpdate_aliens_CP8() {
+
         Board board = new Board();
-        board.getAliens().add(new Alien(Commons.ALIEN_INIT_X  , Commons.ALIEN_INIT_Y + Commons.GROUND + Commons.ALIEN_HEIGHT));
-        Player player = new Player();
-        board.setPlayer(player);
-        int x = board.getAliens().getFirst().getX();
-        int y = board.getAliens().getFirst().getY();
+
+        board.getAliens().clear();
+
+        int initialX = CENTRO_X;
+        board.setDirection(1);
+
+        int initialY = Commons.GROUND + Commons.ALIEN_HEIGHT + 1;
+
+        Alien testAlien = new Alien(initialX, initialY);
+
+        board.getAliens().add(testAlien);
         try {
             Method method = Board.class.getDeclaredMethod("update_aliens");
             method.setAccessible(true);
             method.invoke(board);
 
-            boolean correcto = x > Commons.BORDER_LEFT && x < Commons.BOARD_WIDTH - Commons.BORDER_RIGHT
-                    && board.getAliens().getFirst().isVisible() && y > Commons.GROUND + Commons.ALIEN_HEIGHT;
-            assertTrue(correcto);
         } catch (NoSuchMethodException | InvocationTargetException |
                  IllegalAccessException e) {
             throw new RuntimeException(e);
         }
+
+        Alien finalAlienState = board.getAliens().getFirst();
+        assertNotEquals(initialX, finalAlienState.getX());
+        assertEquals(initialY, finalAlienState.getY());
     }
 
     @Test
