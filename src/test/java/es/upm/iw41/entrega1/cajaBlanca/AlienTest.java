@@ -9,34 +9,32 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class AlienTest{
 
-    private static final int CENTRO_X = 150;
-    private static final int CENTRO_Y = 100;
+    private static final int MID_X = 150;
+    private static final int MID_Y = 100;
     private static final int OUT_BORDER_RIGHT = 359; // some docs used 359 as outside
     private static final int OUT_BORDER_UP = 351;
     private static final int OUT_BORDER_DOWN = -1;
 
 
-    // METODO ACT
-
     @Test
     @DisplayName("Alien.act - Path CP1")
     void testAct_Condition_CP1(){
         int x = 5;
-        Alien alien = new Alien(CENTRO_X, CENTRO_Y);
+        Alien alien = new Alien(MID_X, MID_Y);
         alien.act(x);
-        int res = CENTRO_X - x;
-        boolean resultado = alien.getX() == res;
-        assertTrue(resultado);
+        int res = MID_X - x;
+        boolean result = alien.getX() == res;
+
+        assertTrue(result);
     }
 
-
-    // METODO initAlien
 
     @Test
     @DisplayName("Alien.initAlien - Path CP1")
     void testinitAlien_Condition_CP1() {
-        Alien alien = new Alien(CENTRO_X, CENTRO_Y);
+        Alien alien = new Alien(MID_X, MID_Y);
         Alien.Bomb bomb = alien.getBomb();
+
         assertNotNull(bomb);
     }
 
@@ -44,8 +42,9 @@ public class AlienTest{
     @DisplayName("Alien.initAlien - Path CP2")
     void testinitAlien_Condition_CP2() {
         int x = Commons.BOARD_WIDTH;
-        Alien alien = new Alien(OUT_BORDER_RIGHT, CENTRO_Y);
-        boolean result = alien.getX() == x && alien.getY() == CENTRO_Y;
+        Alien alien = new Alien(OUT_BORDER_RIGHT, MID_Y);
+        boolean result = alien.getX() == x && alien.getY() == MID_Y;
+
         assertTrue(result);
     }
 
@@ -53,8 +52,9 @@ public class AlienTest{
     @DisplayName("Alien.initAlien - Path CP3")
     void testinitAlien_Condition_CP3() {
         int x = 0;
-        Alien alien = new Alien(OUT_BORDER_DOWN, CENTRO_Y);
-        boolean result = alien.getX() == x && alien.getY() == CENTRO_Y;
+        Alien alien = new Alien(OUT_BORDER_DOWN, MID_Y);
+        boolean result = alien.getX() == x && alien.getY() == MID_Y;
+
         assertTrue(result);
     }
 
@@ -62,8 +62,9 @@ public class AlienTest{
     @DisplayName("Alien.initAlien - Path CP4")
     void testinitAlien_Condition_CP4() {
         int y = Commons.BOARD_HEIGHT;
-        Alien alien = new Alien(CENTRO_X, OUT_BORDER_UP);
-        boolean result = alien.getX() == CENTRO_X && alien.getY() == y;
+        Alien alien = new Alien(MID_X, OUT_BORDER_UP);
+        boolean result = alien.getX() == MID_X && alien.getY() == y;
+
         assertTrue(result);
     }
 
@@ -71,8 +72,9 @@ public class AlienTest{
     @DisplayName("Alien.initAlien - Path CP5")
     void testinitAlien_Condition_CP5() {
         int y = 0;
-        Alien alien = new Alien(CENTRO_X, OUT_BORDER_DOWN);
-        boolean result = alien.getX() == CENTRO_X && alien.getY() == y;
+        Alien alien = new Alien(MID_X, OUT_BORDER_DOWN);
+        boolean result = alien.getX() == MID_X && alien.getY() == y;
+
         assertTrue(result);
     }
 }

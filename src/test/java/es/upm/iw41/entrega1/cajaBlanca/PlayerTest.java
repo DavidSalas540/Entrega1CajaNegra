@@ -16,44 +16,41 @@ public class PlayerTest {
         return new KeyEvent(new Canvas(), id, System.currentTimeMillis(), 0, keyCode, KeyEvent.CHAR_UNDEFINED);
     }
 
-    //METODO act()
 
     @Test
     @DisplayName("Player.act - Path CP2")
     void testAct_Path_CP2(){
-
         Player player = new Player();
         int width = Commons.BOARD_WIDTH - 2 * player.getImage().getWidth(null);
         player.setX(width - 1);
         player.keyPressed(key(KeyEvent.KEY_PRESSED, KeyEvent.VK_RIGHT));
         player.act();
+
         assertEquals(width, player.getX());
 
     }
 
-    //METODO act()
 
     @Test
     @DisplayName("Player.act - Path CP3")
     void testact_Path_CP3(){
-
         Player player = new Player();
         player.setX(3);
         player.keyPressed(key(KeyEvent.KEY_PRESSED, KeyEvent.VK_LEFT));
         player.act();
+
         assertEquals(2, player.getX());
     }
 
-    // METODO initPlayer()
 
     @Test
     @DisplayName("Player.initPlayer - Path CP1")
     void testinitPlayer_Path_CP1() {
         Player player = new Player();
+
         assertNotNull(player.getImage());
     }
 
-    //METODO keyPressed(KeyEvent e)
 
     @Test
     @DisplayName("Player.keyPressed - Path CP1")
@@ -62,8 +59,10 @@ public class PlayerTest {
         int x = player.getX();
         player.keyPressed(key(KeyEvent.KEY_PRESSED, KeyEvent.VK_UP));
         player.act();
+
         assertEquals(x, player.getX());
     }
+
 
     @Test
     @DisplayName("Player.keyPressed - Path CP2")
@@ -72,8 +71,9 @@ public class PlayerTest {
         int x = player.getX();
         player.keyPressed(key(KeyEvent.KEY_PRESSED, KeyEvent.VK_LEFT));
         player.act();
-        boolean resultado = player.getX() < x;
-        assertTrue(resultado);
+        boolean result = player.getX() < x;
+
+        assertTrue(result);
     }
 
     @Test
@@ -83,11 +83,11 @@ public class PlayerTest {
         int x = player.getX();
         player.keyPressed(key(KeyEvent.KEY_PRESSED, KeyEvent.VK_RIGHT));
         player.act();
-        boolean resultado = player.getX() > x;
-        assertTrue(resultado);
+        boolean result = player.getX() > x;
+
+        assertTrue(result);
     }
 
-    //METODO KeyReleased(KeyEvent e)
 
     @Test
     @DisplayName("Player.keyReleased - Path CP1")
@@ -115,6 +115,7 @@ public class PlayerTest {
         player.keyReleased(key(KeyEvent.KEY_RELEASED, KeyEvent.VK_RIGHT));
         player.act();
         int x2 = player.getX();
+
         assertEquals(x1, x2);
     }
 
@@ -128,6 +129,7 @@ public class PlayerTest {
         player.keyReleased(key(KeyEvent.KEY_RELEASED, KeyEvent.VK_LEFT));
         player.act();
         int x2 = player.getX();
+
         assertEquals(x1, x2);
     }
 }
