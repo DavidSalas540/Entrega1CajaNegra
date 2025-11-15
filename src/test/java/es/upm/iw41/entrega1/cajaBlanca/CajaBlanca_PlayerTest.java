@@ -122,7 +122,7 @@ public class CajaBlanca_PlayerTest {
     }
 
     @Test
-    @DisplayName("Player.keyReleased - Path CP2")
+    @DisplayName("Player.keyReleased - Path CP3")
     void testKeyReleased_Path_CP3() {
         Player player = new Player();
         player.keyPressed(key(KeyEvent.KEY_PRESSED, KeyEvent.VK_LEFT));

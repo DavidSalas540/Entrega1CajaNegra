@@ -33,9 +33,8 @@ public class CajaBlanca_AlienTest {
     @DisplayName("Alien.initAlien - Path CP1")
     void testinitAlien_Condition_CP1() {
         Alien alien = new Alien(MID_X, MID_Y);
-        Alien.Bomb bomb = alien.getBomb();
-
-        assertNotNull(bomb);
+        boolean result = alien.getX() == MID_X && alien.getY() == MID_Y;
+        assertTrue(result);
     }
 
     @Test
@@ -59,6 +58,7 @@ public class CajaBlanca_AlienTest {
     void testinitAlien_Condition_CP4() {
         int y = Commons.BOARD_HEIGHT;
         Alien alien = new Alien(MID_X, OUT_BORDER_UP);
+
         assertEquals(y, alien.getY());
     }
 

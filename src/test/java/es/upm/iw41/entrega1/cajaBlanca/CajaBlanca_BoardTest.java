@@ -140,7 +140,7 @@ public class CajaBlanca_BoardTest {
         assertTrue(correct);
     }
 
-    // 1,2,[3,4,8,9,10,[11,10]*,2]*,12,13,[14,15,13]*,20
+
     @Test
     @DisplayName("Board.update_aliens - Path CP7")
     void testBoardUpdate_aliens_CP7() {
