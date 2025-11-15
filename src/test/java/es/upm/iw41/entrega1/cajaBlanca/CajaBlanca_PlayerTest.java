@@ -10,24 +10,24 @@ import java.awt.event.KeyEvent;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class PlayerTest {
+public class CajaBlanca_PlayerTest {
 
     private static KeyEvent key(int id, int keyCode) {
         return new KeyEvent(new Canvas(), id, System.currentTimeMillis(), 0, keyCode, KeyEvent.CHAR_UNDEFINED);
     }
 
-
+    
     @Test
     @DisplayName("Player.act - Path CP2")
     void testAct_Path_CP2(){
         Player player = new Player();
         int width = Commons.BOARD_WIDTH - 2 * player.getImage().getWidth(null);
-        player.setX(width - 1);
+        int x = width - 1;
+        player.setX(x);
         player.keyPressed(key(KeyEvent.KEY_PRESSED, KeyEvent.VK_RIGHT));
         player.act();
 
         assertEquals(width, player.getX());
-
     }
 
 
@@ -35,11 +35,13 @@ public class PlayerTest {
     @DisplayName("Player.act - Path CP3")
     void testact_Path_CP3(){
         Player player = new Player();
-        player.setX(3);
+        int x = 3;
+        player.setX(x);
         player.keyPressed(key(KeyEvent.KEY_PRESSED, KeyEvent.VK_LEFT));
         player.act();
 
-        assertEquals(2, player.getX());
+        int x_expected = 2;
+        assertEquals(x_expected, player.getX());
     }
 
 

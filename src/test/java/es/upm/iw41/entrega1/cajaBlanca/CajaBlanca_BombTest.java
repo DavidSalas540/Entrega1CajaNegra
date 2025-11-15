@@ -7,7 +7,7 @@ import space_invaders.sprites.Alien;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-public class BombTest {
+public class CajaBlanca_BombTest {
     private static final int MID_X = 150;
     private static final int MID_Y = 100;
 

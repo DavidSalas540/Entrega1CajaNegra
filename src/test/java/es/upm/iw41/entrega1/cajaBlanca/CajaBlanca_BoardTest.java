@@ -18,7 +18,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class BoardTest {
+public class CajaBlanca_BoardTest {
 
     private final int ALIEN_ROWS = 4;
     private final int ALIEN_COLUMNS = 6;
@@ -114,7 +114,8 @@ public class BoardTest {
     void testBoardUpdate_aliens_CP4() {
         Board board = new Board();
         board.getAliens().clear();
-        board.setDirection(-1);
+        int dir = -1;
+        board.setDirection(dir);
         int initialX = Commons.BOARD_WIDTH - Commons.BORDER_RIGHT;
         int initialY = Commons.ALIEN_INIT_Y;
 
@@ -134,23 +135,25 @@ public class BoardTest {
         Alien finalAlienState = board.getAliens().getFirst();
         int expectedY = initialY + Commons.GO_DOWN;
 
-        boolean correcto = board.getDirection() == -1 && expectedY == finalAlienState.getY() && initialY == finalAlienState.getX();
-        assertTrue(correcto);
+        boolean correct = board.getDirection() == -1 && expectedY == finalAlienState.getY()
+                && initialX == finalAlienState.getX();
+        assertTrue(correct);
     }
 
-
+    // 1,2,[3,4,8,9,10,[11,10]*,2]*,12,13,[14,15,13]*,20
     @Test
     @DisplayName("Board.update_aliens - Path CP7")
     void testBoardUpdate_aliens_CP7() {
         Board board = new Board();
-        board.setDirection(0);
+        int dir = 0;
+        board.setDirection(dir);
         board.getAliens().clear();
         int initialX = BORDER_LEFT ;
         int initialY = MID_Y;
         Alien testAlien = new Alien(initialX, initialY);
         testAlien.die();
         board.getAliens().add(testAlien);
-        int initialDirection = 0;
+        int initialDirection = 1;
         board.setDirection(initialDirection);
 
         try {
@@ -163,8 +166,9 @@ public class BoardTest {
 
         Alien finalAlienState = board.getAliens().getFirst();
 
-        boolean correcto = initialDirection == board.getDirection() && initialY == finalAlienState.getY() && initialX == finalAlienState.getX();
-
+        boolean correcto = initialDirection == board.getDirection()
+                && initialY == finalAlienState.getY()
+                && initialX == finalAlienState.getX();
         assertTrue(correcto);
     }
 
@@ -178,7 +182,8 @@ public class BoardTest {
         board.getAliens().clear();
 
         int initialX = MID_X;
-        board.setDirection(1);
+        int dir = 1;
+        board.setDirection(dir);
 
         int initialY = Commons.GROUND + Commons.ALIEN_HEIGHT + 1;
 

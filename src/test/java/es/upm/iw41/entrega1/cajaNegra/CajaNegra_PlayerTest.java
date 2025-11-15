@@ -10,46 +10,49 @@ import java.awt.event.KeyEvent;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class PlayerTest {
+public class CajaNegra_PlayerTest {
 
     private static KeyEvent key(int id, int keyCode) {
         return new KeyEvent(new Canvas(), id, System.currentTimeMillis(), 0, keyCode, KeyEvent.CHAR_UNDEFINED);
     }
 
     @Test
-    @DisplayName("Player.KeyPressed: Pulsar Izquierda inicia movimiento a la izquierda")
+    @DisplayName("Player.KeyPressed: Left moves to the left")
     void playerKeyPressed_leftMovesLeft() {
         Player player = new Player();
         int x = player.getX();
         player.keyPressed(key(KeyEvent.KEY_PRESSED, KeyEvent.VK_LEFT));
         player.act();
-        boolean resultado = player.getX() < x;
-        assertTrue(resultado);
+        boolean result = player.getX() < x;
+
+        assertTrue(result);
     }
 
     @Test
-    @DisplayName("Player.KeyPressed: Pulsar Derecha inicia movimiento a la derecha")
+    @DisplayName("Player.KeyPressed: Right moves to the right")
     void playerKeyPressed_rightMovesRight() {
         Player player = new Player();
         int x = player.getX();
         player.keyPressed(key(KeyEvent.KEY_PRESSED, KeyEvent.VK_RIGHT));
         player.act();
-        boolean resultado = player.getX() > x;
-        assertTrue(resultado);
+        boolean result = player.getX() > x;
+
+        assertTrue(result);
     }
 
     @Test
-    @DisplayName("Player.keyPressed: tecla inválida, no afecta al movimiento tras act()")
+    @DisplayName("Player.keyPressed: Invalid key, not affect the movement after act()")
     void playerKeyPressed_invalidNoMove() {
         Player player = new Player();
         int x = player.getX();
         player.keyPressed(key(KeyEvent.KEY_PRESSED, KeyEvent.VK_UP));
         player.act();
+
         assertEquals(x, player.getX());
     }
 
     @Test
-    @DisplayName("keyReleased RIGHT: detiene el movimiento a la derecha")
+    @DisplayName("keyReleased RIGHT: stops movement to the right")
     void releaseRightStopsMovement() {
         Player p = new Player();
         p.keyPressed(key(KeyEvent.KEY_PRESSED, KeyEvent.VK_RIGHT));
@@ -58,11 +61,12 @@ public class PlayerTest {
         p.keyReleased(key(KeyEvent.KEY_RELEASED, KeyEvent.VK_RIGHT));
         p.act();
         int x2 = p.getX();
+
         assertEquals(x1, x2);
     }
 
     @Test
-    @DisplayName("keyReleased LEFT: detiene el movimiento a la izquierda")
+    @DisplayName("keyReleased LEFT: stops movement to the left")
     void releaseLeftStopsMovement() {
         Player p = new Player();
         p.keyPressed(key(KeyEvent.KEY_PRESSED, KeyEvent.VK_LEFT));
@@ -71,11 +75,12 @@ public class PlayerTest {
         p.keyReleased(key(KeyEvent.KEY_RELEASED, KeyEvent.VK_LEFT));
         p.act();
         int x2 = p.getX();
+
         assertEquals(x1, x2);
     }
 
     @Test
-    @DisplayName("keyReleased tecla inválida: no altera el estado del movimiento")
+    @DisplayName("keyReleased invalid key: do not alter the movement status")
     void releaseInvalidKeyNoEffect() {
         Player p = new Player();
 
