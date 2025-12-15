@@ -51,9 +51,8 @@ public class Shot extends Sprite {
         var ii = new ImageIcon(shotImg);
         setImage(ii.getImage());
 
-        setX(x + H_SPACE);
-
-        setY(y - V_SPACE);
+        setX(x);    // Se ha eliminado el + H_SPACE
+        setY(y);    // Se ha eliminado el - V_SPACE
     }
 }
 
