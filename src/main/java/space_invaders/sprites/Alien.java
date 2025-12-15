@@ -81,8 +81,14 @@ public class Alien extends Sprite {
      * según la dirección especificada.</dd></dl>
      */
     public void act(int direction) {
-
-        this.x -= direction;
+        if (direction + this.x > Commons.BOARD_WIDTH - Commons.BORDER_RIGHT) {
+            //Cambios para comprobar que no se salga de los limites de la pantalla
+            this.x = Commons.BOARD_WIDTH - Commons.BORDER_RIGHT;
+        } else if (direction + this.x < Commons.BORDER_LEFT) {
+            this.x = Commons.BORDER_LEFT;
+        } else {
+            this.x += direction;    // se sustituye el -= por +=
+        }
     }
 
     /**
