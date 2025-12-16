@@ -22,6 +22,8 @@ public class CajaNegra_ShotTest {
     private static final int INSIDE_BORDER_UP = 349;
     private static final int BORDER_DOWN = 0;
     private static final int INSIDE_BORDER_DOWN = 1;
+    private static final int H_SPACE = 6;
+    private static final int V_SPACE = 1;
 
 
     @Test
@@ -143,7 +145,7 @@ public class CajaNegra_ShotTest {
 
 
     @Test
-    @DisplayName("Shot.initShot: // X1,Y3")
+    @DisplayName("Shot.initShot: X1,Y3")
     void shotInit_robustBoundariesY3() {
         int x = 0;
         int y = 0;

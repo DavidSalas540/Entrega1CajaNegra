@@ -365,7 +365,7 @@ public class Board extends JPanel {
                 this.shot.die();
             } else {
                 this.shot.setY(y);
-                this.shot.setX(y);
+                // this.shot.setX(y); Esta linea ha sido borrada porque el disparo no se mueve en el eje x
             }
         }
     }
