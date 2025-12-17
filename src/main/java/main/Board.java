@@ -353,7 +353,7 @@ public class Board extends JPanel {
                         alien.setImage(ii.getImage());
                         alien.setDying(true);
                         deaths++;
-                        
+                        shot.die(); // Se añade esta linea para que un disparo no pueda matar a mas de un alien
                     }
                 }
             }
@@ -398,7 +398,7 @@ public class Board extends JPanel {
 
             int x = alien.getX();
 
-            if (x >= Commons.BOARD_WIDTH - Commons.BORDER_RIGHT && direction == -1) {
+            if (x >= Commons.BOARD_WIDTH - Commons.BORDER_RIGHT && direction == 1) { //Se cambia a direction == 1 para indicar que golpea hacia la derecha
 
                 direction = -1;
 
@@ -435,8 +435,8 @@ public class Board extends JPanel {
 
                 int y = alien.getY();
 
-                if (y > Commons.GROUND + Commons.ALIEN_HEIGHT) {
-                    inGame = true;
+                if (y > Commons.GROUND - Commons.ALIEN_HEIGHT) { //Se cambia a - para que la invasion sea en el momento correcto
+                    inGame = false;//Se cambia a false para poder terminar la partida
                     message = "Invasion!";
                 }
 
@@ -481,7 +481,7 @@ public class Board extends JPanel {
             int rand = generator.nextInt(15);
             Alien.Bomb bomb = alien.getBomb();
 
-            if (rand != Commons.CHANCE && alien.isVisible() && bomb.isDestroyed()) {
+            if (rand == Commons.CHANCE && alien.isVisible() && bomb.isDestroyed()) { // Se cambia a == para que la probabilidad sea 1/15 en vez de 14/15
 
                 bomb.setDestroyed(false);
                 bomb.setX(alien.getX());
@@ -509,7 +509,7 @@ public class Board extends JPanel {
 
             if (!bomb.isDestroyed()) {
 
-                bomb.setY(bomb.getY() - Commons.BOMB_SPEED);
+                bomb.setY(bomb.getY() + Commons.BOMB_SPEED); //Se cambia a + porque las bombas se movían hacia arriba
 
                 if (bomb.getY() >= Commons.GROUND - Commons.BOMB_HEIGHT) {
 
@@ -571,7 +571,7 @@ public class Board extends JPanel {
 
                     if (!shot.isVisible()) {
 
-                        shot = new Shot(y, x);
+                        shot = new Shot(x, y); // Se ha substituido y por x porque la bala se incializaba en una ubicación erronea
                     }
                 }
             }
