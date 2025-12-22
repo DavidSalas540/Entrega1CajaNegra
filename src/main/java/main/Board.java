@@ -353,7 +353,6 @@ public class Board extends JPanel {
                         alien.setImage(ii.getImage());
                         alien.setDying(true);
                         deaths++;
-                        shot.die(); // Se añade esta linea para que un disparo no pueda matar a mas de un alien
                     }
                 }
             }
@@ -435,7 +434,7 @@ public class Board extends JPanel {
 
                 int y = alien.getY();
 
-                if (y > Commons.GROUND - Commons.ALIEN_HEIGHT) { //Se cambia a - para que la invasion sea en el momento correcto
+                if (y > Commons.GROUND + Commons.ALIEN_HEIGHT) {
                     inGame = false;//Se cambia a false para poder terminar la partida
                     message = "Invasion!";
                 }
@@ -481,7 +480,7 @@ public class Board extends JPanel {
             int rand = generator.nextInt(15);
             Alien.Bomb bomb = alien.getBomb();
 
-            if (rand == Commons.CHANCE && alien.isVisible() && bomb.isDestroyed()) { // Se cambia a == para que la probabilidad sea 1/15 en vez de 14/15
+            if (rand != Commons.CHANCE && alien.isVisible() && bomb.isDestroyed()) {
 
                 bomb.setDestroyed(false);
                 bomb.setX(alien.getX());
